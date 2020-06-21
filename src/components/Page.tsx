@@ -1,16 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { GlobalStyle } from './styled/Global';
 
 const PageContainer = styled.div`
-  background-color: ${props => props.theme.colors.bgColor};
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  @media (min-width: ${props => props.theme.queries.xLarge}) {
-    flex-direction: row;
-  }
+  ${({ theme }) => css`
+    background-color: ${theme.colors.bg};
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    @media (min-width: ${theme.queries.xLarge}) {
+      flex-direction: row;
+    }
+  `}
 `;
 
 type PageProps = {

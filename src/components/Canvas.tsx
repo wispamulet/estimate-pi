@@ -1,7 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { StepContext } from '../contexts/StepContext';
+import { TimesContext } from '../contexts/TimesContext';
+import { WidthContext } from '../contexts/WidthContext';
 
-const CanvasContainer = styled.section`
+const StyledSection = styled.section`
   flex: 1;
   display: flex;
   justify-content: center;
@@ -11,13 +14,14 @@ const CanvasContainer = styled.section`
   }
 `;
 
-interface CanvasProps {
-  width: number;
-  times: number;
-}
-
-const Canvas: React.FC<CanvasProps> = ({ width, times }) => {
-  console.log('draw');
+const Canvas: React.FC = () => {
+  console.log('Canvas Rendered');
+  const { step } = useContext(StepContext);
+  const { times } = useContext(TimesContext);
+  let { width } = useContext(WidthContext);
+  if (width >= 800) {
+    width = 800;
+  }
   const canvasRef = useRef<HTMLCanvasElement>(null!);
 
   useEffect(() => {
@@ -31,43 +35,45 @@ const Canvas: React.FC<CanvasProps> = ({ width, times }) => {
     ctx.beginPath();
     ctx.font = '18px Comic Sans MS';
     // circle
-    ctx.arc(width / 2, width / 2, width * 0.45, 0, 2 * Math.PI);
-    // square
-    const x0 = Number((width * 0.05 - 2 * ratio).toFixed(2));
-    const y0 = Number((width * 0.05 + 4 * ratio).toFixed(2));
-    ctx.moveTo(x0, y0);
-    // ctx.fillText(`${x0}, ${y0}`, x0 - 25, y0 - 10);
-    const x1 = Number((width * 0.95 - 8 * ratio).toFixed(2));
-    const y1 = Number((width * 0.05 + 1 * ratio).toFixed(2));
-    ctx.lineTo(x1, y1);
-    // ctx.fillText(`${x1}, ${y1}`, x1 - 60, y1 - 10);
+    // ctx.arc(width / 2, width / 2, width * 0.45, 0, 2 * Math.PI);
+    if (step >= 1) {
+      // square
+      const x0 = Number((width * 0.05 - 10 * ratio).toFixed(2));
+      const y0 = Number((width * 0.05 + 4 * ratio).toFixed(2));
+      ctx.moveTo(x0, y0);
+      // ctx.fillText(`${x0}, ${y0}`, x0 - 25, y0 - 10);
+      const x1 = Number((width * 0.95 - 8 * ratio).toFixed(2));
+      const y1 = Number((width * 0.05 + 1 * ratio).toFixed(2));
+      ctx.lineTo(x1, y1);
+      // ctx.fillText(`${x1}, ${y1}`, x1 - 60, y1 - 10);
 
-    const x2 = Number((width * 0.95 + 2 * ratio).toFixed(2));
-    const y2 = Number((width * 0.05 - 9 * ratio).toFixed(2));
-    ctx.moveTo(x2, y2);
-    // ctx.fillText(`${x2}, ${y2}`, x2 - 50, y2 + 30);
-    const x3 = Number((width * 0.95 + 4 * ratio).toFixed(2));
-    const y3 = Number((width * 0.95 + 8 * ratio).toFixed(2));
-    ctx.lineTo(x3, y3);
-    // ctx.fillText(`${x3}, ${y3}`, x3 - 40, y3 - 10);
+      const x2 = Number((width * 0.95 + 2 * ratio).toFixed(2));
+      const y2 = Number((width * 0.05 - 9 * ratio).toFixed(2));
+      ctx.moveTo(x2, y2);
+      // ctx.fillText(`${x2}, ${y2}`, x2 - 50, y2 + 30);
+      const x3 = Number((width * 0.95 + 4 * ratio).toFixed(2));
+      const y3 = Number((width * 0.95 + 8 * ratio).toFixed(2));
+      ctx.lineTo(x3, y3);
+      // ctx.fillText(`${x3}, ${y3}`, x3 - 40, y3 - 10);
 
-    const x4 = Number((width * 0.95 + 9 * ratio).toFixed(2));
-    const y4 = Number((width * 0.95 - 1 * ratio).toFixed(2));
-    ctx.moveTo(x4, y4);
-    // ctx.fillText(`${x4}, ${y4}`, x4 - 80, y4 + 20);
-    const x5 = Number((width * 0.05 - 3 * ratio).toFixed(2));
-    const y5 = Number((width * 0.95 + 2 * ratio).toFixed(2));
-    ctx.lineTo(x5, y5);
-    // ctx.fillText(`${x5}, ${y5}`, x5 - 10, y5 - 10);
+      const x4 = Number((width * 0.95 + 15 * ratio).toFixed(2));
+      const y4 = Number((width * 0.95 - 1 * ratio).toFixed(2));
+      ctx.moveTo(x4, y4);
+      // ctx.fillText(`${x4}, ${y4}`, x4 - 80, y4 + 20);
+      const x5 = Number((width * 0.05 - 3 * ratio).toFixed(2));
+      const y5 = Number((width * 0.95 + 2 * ratio).toFixed(2));
+      ctx.lineTo(x5, y5);
+      // ctx.fillText(`${x5}, ${y5}`, x5 - 10, y5 - 10);
 
-    const x6 = Number((width * 0.05 + 3 * ratio).toFixed(2));
-    const y6 = Number((width * 0.95 - 1 * ratio).toFixed(2));
-    ctx.moveTo(x6, y6);
-    // ctx.fillText(`${x6}, ${y6}`, x6 - 40, y6 + 20);
-    const x7 = Number((width * 0.05 - 3 * ratio).toFixed(2));
-    const y7 = Number((width * 0.05 - 1 * ratio).toFixed(2));
-    ctx.lineTo(x7, y7);
-    // ctx.fillText(`${x7}, ${y7}`, x7 + 20, y7 + 30);
+      const x6 = Number((width * 0.05 + 3 * ratio).toFixed(2));
+      const y6 = Number((width * 0.95 - 1 * ratio).toFixed(2));
+      ctx.moveTo(x6, y6);
+      // ctx.fillText(`${x6}, ${y6}`, x6 - 40, y6 + 20);
+      const x7 = Number((width * 0.05 - 3 * ratio).toFixed(2));
+      const y7 = Number((width * 0.05 - 1 * ratio).toFixed(2));
+      ctx.lineTo(x7, y7);
+      // ctx.fillText(`${x7}, ${y7}`, x7 + 20, y7 + 30);
+    }
 
     // x axis
     ctx.moveTo(14 * ratio, width * 0.5 + 2 * ratio);
@@ -112,12 +118,12 @@ const Canvas: React.FC<CanvasProps> = ({ width, times }) => {
         ctx.fill();
       }
     }
-  }, [times, width]);
+  }, [step, times, width]);
 
   return (
-    <CanvasContainer>
+    <StyledSection>
       <canvas id="myCanvas" width={width} height={width} ref={canvasRef} />
-    </CanvasContainer>
+    </StyledSection>
   );
 };
 

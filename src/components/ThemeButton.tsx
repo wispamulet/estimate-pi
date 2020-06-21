@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 
 const StyledButton = styled.button`
   position: absolute;
@@ -8,11 +8,13 @@ const StyledButton = styled.button`
 `;
 
 type ThemeButtonProps = {
-  handleClick: () => void;
+  onClick: () => void;
 };
 
-const ThemeButton: React.FC<ThemeButtonProps> = ({ handleClick }) => (
-  <StyledButton onClick={handleClick}>Theme!</StyledButton>
-);
+const ThemeButton: React.FC<ThemeButtonProps> = ({ onClick }) => {
+  const themeContext = useContext(ThemeContext);
+
+  return <StyledButton onClick={onClick}>Current: ?</StyledButton>;
+};
 
 export default ThemeButton;
