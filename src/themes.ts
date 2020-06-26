@@ -10,7 +10,7 @@ const defaultColors: ThemeColors = {
 const darkColors: ThemeColors = {
   primary: '#0070f3',
   bg: '#000',
-  bgHeader: '#f5f6f7',
+  bgHeader: '#0070f3',
   bsHeader: '#d0d0d5',
 };
 

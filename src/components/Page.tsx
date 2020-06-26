@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import SideBar from './Sidebar';
 import { GlobalStyle } from './styled/Global';
 
 const PageContainer = styled.div`
@@ -20,19 +21,11 @@ type PageProps = {
 };
 
 const Page: React.FC<PageProps> = ({ children }) => (
-  <PageContainer className="App">
+  <PageContainer>
     <GlobalStyle />
+    <SideBar />
     {children}
   </PageContainer>
 );
 
 export default Page;
-
-// export default function Page({ children }: React.Props<any>): JSX.Element {
-//   return (
-//     <PageContainer className="App">
-//       <GlobalStyle />
-//       {children}
-//     </PageContainer>
-//   );
-// }

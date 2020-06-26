@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { StepContext } from '../contexts/StepContext';
+import React from 'react';
+import { StepContext } from '../contexts/piContexts';
 
 // const withLoadingHint: React.FC = Component => ({ isLoading, ...props }) => {
 //   if (!isLoading) {
@@ -10,11 +10,17 @@ import { StepContext } from '../contexts/StepContext';
 // };
 
 const Hint: React.FC = () => {
-  const { step } = useContext(StepContext);
+  console.log('Hint rendered');
+  const { step } = React.useContext(StepContext);
 
   switch (step) {
     case 0:
-      return <p>Hint: Let's say we have a 2D coordinates system like this!</p>;
+      return (
+        <p>
+          <span>Hint: </span>Let's say we have a Cartesian coordinate system
+          like this!
+        </p>
+      );
     case 1:
       return <p>Step 1</p>;
     default:

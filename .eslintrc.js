@@ -3,23 +3,29 @@ module.exports = {
   rules: {
     // your rules
     'no-console': 1,
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies":
+        [ "**/*.test.js",
+          "**/*.spec.js",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/*.test.tsx",
+          "**/*.spec.tsx",
+        ],
+      },
+    ],
   },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
       rules: {
-        '@typescript-eslint/no-explicit-any': 0,
-        '@typescript-eslint/explicit-function-return-type': 0,
-        '@typescript-eslint/no-unused-vars': 1,
-        'react/prop-types': 0,
-        'no-unused-vars': 0
+        // '@typescript-eslint/no-unused-vars': 0,
       },
     },
     {
       files: ['*.js', '*.jsx'],
-      rules: {
-        'react/jsx-props-no-spreading': 0,
-      },
+      rules: {},
     },
   ],
 };

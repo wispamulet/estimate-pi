@@ -12,9 +12,10 @@ type ThemeButtonProps = {
 };
 
 const ThemeButton: React.FC<ThemeButtonProps> = ({ onClick }) => {
-  const themeContext = useContext(ThemeContext);
+  console.log('ThemeButton rendered');
+  // const themeContext = useContext(ThemeContext);
 
   return <StyledButton onClick={onClick}>Current: ?</StyledButton>;
 };
 
-export default ThemeButton;
+export default React.memo(ThemeButton);

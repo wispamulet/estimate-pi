@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import Question from './Question';
 import Answer from './Answer';
 
-const StyledHeader = styled.header`
+const Container = styled.header`
   ${({ theme }) => css`
     background: ${theme.colors.bgHeader};
     /* color: ${theme.colors.primary}; */
@@ -22,11 +22,15 @@ const StyledHeader = styled.header`
   `}
 `;
 
-const Header: React.FC = () => (
-  <StyledHeader>
-    <Question />
-    <Answer />
-  </StyledHeader>
-);
+const Header: React.FC = () => {
+  console.log('Header rendered');
 
-export default Header;
+  return (
+    <Container>
+      <Question />
+      <Answer />
+    </Container>
+  );
+};
+
+export default React.memo(Header);

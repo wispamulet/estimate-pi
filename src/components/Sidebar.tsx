@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 type StyledAsideProps = {
-  offsetX: string;
+  isOnScreen: boolean;
 };
 
 const StyledAside = styled.aside<StyledAsideProps>`
   width: 30rem;
   min-height: 100vh;
-  background: #ddd;
-  transform: translateX(${({ offsetX }) => offsetX});
+  background: ${props => props.theme.colors.bgHeader};
+  transform: translateX(${({ isOnScreen }) => (isOnScreen ? '0' : '-100%')});
   transition: transform 0.3s ease-in;
   position: absolute;
   top: 0;
@@ -24,27 +25,37 @@ const StyledAside = styled.aside<StyledAsideProps>`
   }
 `;
 
+const links = [
+  { text: '01 - Estimate π', href: '/estimate-pi' },
+  { text: '02 - fake url', href: '/fake-url' },
+  { text: '03 - another fake url', href: '/another-fake-url' },
+  { text: '04 - About', href: '/about' },
+];
+
 const Sidebar: React.FC = () => {
   console.log('Sidebar rendered');
-  const [offsetX, setOffsetX] = useState('-100%');
+  const [isOnScreen, setIsOnScreen] = useState(false);
 
-  const handleClick = () => {
-    console.log(offsetX);
-    setOffsetX(offsetX === '-100%' ? '0' : '-100%');
+  const handleClick = (): void => {
+    setIsOnScreen(!isOnScreen);
   };
 
   return (
-    <StyledAside offsetX={offsetX}>
-      <ul>
-        <li>01</li>
-        <li>02</li>
-        <li>03</li>
-      </ul>
-      <button type="button" onClick={handleClick}>
-        toggle
-      </button>
+    <StyledAside isOnScreen={isOnScreen}>
+      <div>
+        <ul>
+          {links.map((link, i) => (
+            <li key={i}>
+              <Link to={link.href}>{link.text}</Link>
+            </li>
+          ))}
+        </ul>
+        <button type="button" onClick={handleClick}>
+          toggle
+        </button>
+      </div>
     </StyledAside>
   );
 };
 
-export default Sidebar;
+export default React.memo(Sidebar);

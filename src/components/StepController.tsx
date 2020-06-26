@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { StepContext } from '../contexts/StepContext';
+import { StepContext } from '../contexts/piContexts';
 
 const StepController: React.FC = () => {
+  console.log('StepController rendered');
   const { step, stepDecrement, stepIncrement } = useContext(StepContext);
 
   return (

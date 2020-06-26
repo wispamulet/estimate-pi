@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { TimesContext } from '../contexts/TimesContext';
+import { PointContext } from '../contexts/piContexts';
 
 const StyledForm = styled.form`
   flex: 1;
@@ -20,7 +20,8 @@ const StyledForm = styled.form`
 `;
 
 const Form: React.FC = () => {
-  const { updateTimes } = useContext(TimesContext);
+  console.log('Form rendered');
+  const { setPtNum } = useContext(PointContext);
   const textInput = useRef<HTMLInputElement>(null!);
   const [clickable, setClickable] = useState(false);
 
@@ -37,7 +38,7 @@ const Form: React.FC = () => {
     const input = textInput.current;
     const number = Number(input.value);
 
-    updateTimes(number);
+    setPtNum(number);
     input.value = '';
     setClickable(false);
   };

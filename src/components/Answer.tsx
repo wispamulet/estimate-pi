@@ -5,7 +5,7 @@ import Hint from './Hint';
 import StepController from './StepController';
 import { spinRule } from './styled/animations';
 
-const StyledSection = styled.section`
+const Section = styled.section`
   flex: 2;
   width: 100%;
   margin-bottom: ${props => props.theme.spaces.s2};
@@ -21,6 +21,10 @@ const StyledSection = styled.section`
   }
   div.container {
     flex: 1;
+    span {
+      font-size: 2.4rem;
+      font-weight: 600;
+    }
   }
   .controller {
     align-self: center;
@@ -28,16 +32,16 @@ const StyledSection = styled.section`
 `;
 
 const Answer: React.FC = () => {
-  console.log('Hint rendered');
+  console.log('Answer rendered');
 
   return (
-    <StyledSection>
+    <Section>
       {/* <Logo width="10rem" /> */}
       <div className="container">
         <Hint />
       </div>
       <StepController />
-    </StyledSection>
+    </Section>
   );
 };
 

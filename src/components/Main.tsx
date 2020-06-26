@@ -8,11 +8,14 @@ const StyledMain = styled.main`
   flex-direction: column;
 `;
 
-const Main = () => (
-  <StyledMain>
-    {/* <Canvas width={width >= 800 ? 800 : width} times={times} /> */}
-    <Canvas />
-  </StyledMain>
-);
+const Main = () => {
+  console.log('Main rendered');
 
-export default Main;
+  return (
+    <StyledMain>
+      <Canvas />
+    </StyledMain>
+  );
+};
+
+export default React.memo(Main);
